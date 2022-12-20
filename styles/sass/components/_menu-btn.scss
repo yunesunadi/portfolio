@@ -1,0 +1,197 @@
+@use "../abstracts" as *;
+
+.menu {
+    position: absolute;
+    top: rem(37);
+    right: rem(80);
+    z-index: 1;
+
+    @include media-query("medium") {
+        top: rem(40);
+        right: rem(90);
+    }
+
+    @include media-query("x-large") {
+        top: rem(50);
+        right: rem(115);
+    }
+
+    &__btn {
+        $width: rem(38);
+        $height: rem(31);
+        $md-width: rem(46);
+        $md-height: rem(38);
+        $xl-width: rem(52);
+        $xl-height: rem(42);
+        $color: color("primary");
+
+        position: relative;
+        cursor: pointer;
+
+        &--front {
+            @include hexagon($width, $height, $color);
+            position: absolute;
+
+            @include media-query("medium") {
+                @include hexagon($md-width, $md-height, $color);
+                position: absolute;
+            }
+
+            @include media-query("x-large") {
+                @include hexagon($xl-width, $xl-height, $color);
+                position: absolute;
+            }
+        }
+
+        &--middle {
+            @include hexagon($width, $height, color("background"));
+            position: absolute;
+            left: rem(2);
+            z-index: -1;
+
+            @include media-query("medium") {
+                @include hexagon($md-width, $md-height, color("background"));
+                position: absolute;
+            }
+
+            @include media-query("x-large") {
+                @include hexagon($xl-width, $xl-height, color("background"));
+                position: absolute;
+            }
+        }
+
+        &--back {
+            @include hexagon($width, $height, $color);
+            position: absolute;
+            left: rem(6);
+            z-index: -2;
+
+            @include media-query("medium") {
+                @include hexagon($md-width, $md-height, $color);
+                position: absolute;
+            }
+
+            @include media-query("x-large") {
+                @include hexagon($xl-width, $xl-height, $color);
+                position: absolute;
+            }
+        }
+    }
+
+    &-bar {
+        $bar-width: rem(18);
+        $bar-height: rem(2);
+        $md-bar-width: rem(22);
+        $md-bar-height: rem(3);
+        $xl-bar-width: rem(24.5);
+        $xl-bar-height: rem(3);
+
+        &-one {
+            @include pseudo("before") {
+                width: $bar-width;
+                height: $bar-height;
+                top: rem(10);
+                left: rem(9.5);
+                background-color: color("white");
+
+                @include media-query("medium") {
+                    width: $md-bar-width;
+                    height: $md-bar-height;
+                    top: rem(12);
+                    left: rem(12);
+                }
+
+                @include media-query("x-large") {
+                    width: $xl-bar-width;
+                    height: $xl-bar-height;
+                    top: rem(13);
+                    left: rem(14);
+                }
+            }
+
+            &--close {
+                @include pseudo("before") {
+                    top: rem(14);
+                    left: rem(10);
+                    transform: rotate(45deg);
+
+                    @include media-query("medium") {
+                        top: rem(17);
+                        left: rem(12);
+                    }
+
+                    @include media-query("x-large") {
+                        top: rem(19);
+                        left: rem(14);
+                    }
+                }
+            }
+        }
+
+        &-two {
+            @include pseudo("before") {
+                width: $bar-width;
+                height: $bar-height;
+                top: rem(15);
+                left: rem(9.5);
+                background-color: color("white");
+
+                @include media-query("medium") {
+                    width: $md-bar-width;
+                    height: $md-bar-height;
+                    top: rem(18);
+                    left: rem(12);
+                }
+
+                @include media-query("x-large") {
+                    width: $xl-bar-width;
+                    height: $xl-bar-height;
+                    top: rem(20);
+                    left: rem(14);
+                }
+            }
+
+            &--close {
+                @include pseudo("before") {
+                    top: rem(14);
+                    left: rem(10);
+                    transform: rotate(-45deg);
+
+                    @include media-query("medium") {
+                        top: rem(17);
+                        left: rem(12);
+                    }
+
+                    @include media-query("x-large") {
+                        top: rem(19);
+                        left: rem(14);
+                    }
+                }
+            }
+        }
+
+        &-three {
+            @include pseudo("before") {
+                width: $bar-width;
+                height: $bar-height;
+                top: rem(20);
+                left: rem(9.5);
+                background-color: color("white");
+
+                @include media-query("medium") {
+                    width: $md-bar-width;
+                    height: $md-bar-height;
+                    top: rem(24);
+                    left: rem(12);
+                }
+
+                @include media-query("x-large") {
+                    width: $xl-bar-width;
+                    height: $xl-bar-height;
+                    top: rem(27);
+                    left: rem(14);
+                }
+            }
+        }
+    }
+}

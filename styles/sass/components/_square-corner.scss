@@ -1,0 +1,61 @@
+@use "../abstracts" as *;
+
+.square-corner {
+    $sm-gap: rem(20);
+    $lg-gap: rem(20);
+
+    &--top {
+        top: $sm-gap;
+
+        @include media-query("x-large") {
+            top: $lg-gap;
+        }
+
+        &-left {
+            @include square-corner-top-left;
+
+            left: $sm-gap;
+
+            @include media-query("x-large") {
+                left: $lg-gap;
+            }
+        }
+
+        &-right {
+            @include square-corner-top-right;
+            right: $sm-gap;
+
+            @include media-query("x-large") {
+                right: $lg-gap;
+            }
+        }
+    }
+
+    &--bottom {
+        bottom: $sm-gap;
+
+        @include media-query("x-large") {
+            bottom: $lg-gap;
+        }
+
+        &-left {
+            @include square-corner-bottom-left;
+
+            left: $sm-gap;
+
+            @include media-query("x-large") {
+                left: $lg-gap;
+            }
+        }
+
+        &-right {
+            @include square-corner-bottom-right;
+
+            right: $sm-gap;
+
+            @include media-query("x-large") {
+                right: $lg-gap;
+            }
+        }
+    }
+}

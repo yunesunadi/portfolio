@@ -1,0 +1,122 @@
+@use "../abstracts" as *;
+
+.skill-hexagon {
+    $width: rem(90);
+    $height: rem(75);
+    $md-width: rem(120);
+    $md-height: rem(100);
+    $xl-width: rem(150);
+    $xl-height: rem(120);
+    $color: color("primary");
+
+    display: grid;
+    position: relative;
+
+    @include hexagon($width, $height, $color);
+
+    @include media-query(rem(600)) {
+        @include hexagon($md-width, $md-height, $color);
+    }
+
+    @include media-query("x-large") {
+        @include hexagon($xl-width, $xl-height, $color);
+    }
+
+    &--front {
+        $top: rem(6);
+        $left: rem(7);
+        $md-top: rem(6);
+        $md-left: rem(7);
+        $xl-top: rem(9);
+        $xl-left: rem(10);
+
+        @include hexagon($width - $left * 2, $height - $top * 2, $color);
+        position: absolute;
+        top: $top;
+        left: $left;
+        z-index: 2;
+
+        @include media-query(rem(600)) {
+            @include hexagon(
+                $md-width - $md-left * 2,
+                $md-height - $md-top * 2,
+                $color
+            );
+            position: absolute;
+            top: $md-top;
+            left: $md-left;
+        }
+
+        @include media-query("x-large") {
+            @include hexagon(
+                $xl-width - $xl-left * 2,
+                $xl-height - $xl-top * 2,
+                $color
+            );
+            position: absolute;
+            top: $xl-top;
+            left: $xl-left;
+        }
+    }
+
+    &--middle {
+        $top: rem(4);
+        $left: rem(5);
+        $md-top: rem(4);
+        $md-left: rem(5);
+        $xl-top: rem(6);
+        $xl-left: rem(7);
+
+        @include hexagon(
+            $width - $left * 2,
+            $height - $top * 2,
+            color("white")
+        );
+        position: absolute;
+        top: $top;
+        left: $left;
+        z-index: 1;
+
+        @include media-query(rem(600)) {
+            @include hexagon(
+                $md-width - $md-left * 2,
+                $md-height - $md-top * 2,
+                color("white")
+            );
+            position: absolute;
+            top: $md-top;
+            left: $md-left;
+        }
+
+        @include media-query("x-large") {
+            @include hexagon(
+                $xl-width - $xl-left * 2,
+                $xl-height - $xl-top * 2,
+                color("white")
+            );
+            position: absolute;
+            top: $xl-top;
+            left: $xl-left;
+        }
+    }
+
+    &__name {
+        font-size: rem(9.5);
+        line-height: 1.3;
+        font-family: font-family("secondary");
+        color: color("white");
+        text-align: center;
+        justify-self: center;
+        align-self: flex-start;
+        width: 50%;
+        z-index: 3;
+
+        @include media-query(rem(600)) {
+            font-size: rem(11);
+        }
+
+        @include media-query("x-large") {
+            font-size: rem(14);
+        }
+    }
+}

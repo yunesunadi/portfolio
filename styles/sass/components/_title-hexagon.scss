@@ -1,0 +1,78 @@
+@use "../abstracts" as *;
+
+.title-hexagon {
+    &-container {
+        position: absolute;
+        top: rem(37);
+        left: rem(42);
+
+        @include media-query("medium") {
+            top: rem(35);
+            left: rem(50);
+        }
+
+        @include media-query("x-large") {
+            top: rem(50);
+            left: rem(65);
+        }
+    }
+
+    $width: rem(38);
+    $height: rem(31);
+    $md-width: rem(46);
+    $md-height: rem(38);
+    $xl-width: rem(52);
+    $xl-height: rem(42);
+    $color: rgba(color("secondary"), 0.3);
+
+    position: relative;
+
+    &--front {
+        @include hexagon($width, $height, $color);
+        position: absolute;
+
+        @include media-query("medium") {
+            @include hexagon($md-width, $md-height, $color);
+            position: absolute;
+        }
+
+        @include media-query("x-large") {
+            @include hexagon($xl-width, $xl-height, $color);
+            position: absolute;
+        }
+    }
+
+    &--middle {
+        @include hexagon($width, $height, color("background"));
+        position: absolute;
+        left: rem(-2);
+        z-index: -1;
+
+        @include media-query("medium") {
+            @include hexagon($md-width, $md-height, color("background"));
+            position: absolute;
+        }
+
+        @include media-query("x-large") {
+            @include hexagon($xl-width, $xl-height, color("background"));
+            position: absolute;
+        }
+    }
+
+    &--back {
+        @include hexagon($width, $height, $color);
+        position: absolute;
+        left: rem(-6);
+        z-index: -2;
+
+        @include media-query("medium") {
+            @include hexagon($md-width, $md-height, $color);
+            position: absolute;
+        }
+
+        @include media-query("x-large") {
+            @include hexagon($xl-width, $xl-height, $color);
+            position: absolute;
+        }
+    }
+}

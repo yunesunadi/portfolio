@@ -1,0 +1,38 @@
+@use "../abstracts" as *;
+
+.projects {
+    &-container {
+        position: absolute;
+        top: rem(90);
+        bottom: rem(60);
+        padding: rem(25) rem(35) rem(0) rem(50);
+        max-width: $max-width;
+        width: 100%;
+        max-height: 100vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: rem(40);
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        @include media-query("medium") {
+            top: rem(100);
+            bottom: rem(70);
+            grid-template-columns: repeat(2, 1fr);
+            padding: rem(30) rem(40) rem(0) rem(60);
+        }
+
+        @include media-query("x-large") {
+            top: rem(115);
+            bottom: rem(70);
+            gap: rem(50);
+            grid-template-columns: repeat(3, 1fr);
+            padding: rem(35) rem(60) rem(0) rem(75);
+        }
+    }
+}

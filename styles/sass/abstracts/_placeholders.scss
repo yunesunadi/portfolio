@@ -1,0 +1,13 @@
+@use "functions" as *;
+@use "mixins" as *;
+
+%block {
+    width: rem(8);
+    height: rem(4);
+    background-color: color("primary");
+
+    @include media-query("x-large") {
+        width: rem(13);
+        height: rem(5);
+    }
+}

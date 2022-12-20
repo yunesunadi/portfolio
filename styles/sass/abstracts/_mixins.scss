@@ -1,0 +1,167 @@
+@use "variables" as *;
+@use "functions" as *;
+
+@mixin media-query($value) {
+    $size: null;
+    @if type-of($value) == string {
+        $size: validate-key($breakpoints, $value);
+    } @else {
+        $size: not-unitless($value);
+    }
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+@mixin pseudo($element, $content: "", $position: absolute) {
+    @if $element == "before" or $element == "after" {
+        position: relative;
+        &::#{$element} {
+            content: $content;
+            position: $position;
+            @content;
+        }
+    } @else {
+        @error "Pseudo element must be 'before' or 'after'.";
+    }
+}
+
+@mixin square-corner-angle {
+    width: rem(30);
+    height: rem(2.4);
+    background-color: color("secondary");
+
+    @include media-query("medium") {
+        width: rem(40);
+        height: rem(3);
+    }
+
+    @include media-query("x-large") {
+        width: rem(50);
+        height: rem(4);
+    }
+}
+
+@mixin square-corner-top-left {
+    @include pseudo("before") {
+        @include square-corner-angle;
+    }
+
+    @include pseudo("after") {
+        @include square-corner-angle;
+        transform: rotate(90deg);
+
+        top: rem(14);
+        left: rem(-14);
+
+        @include media-query("medium") {
+            top: rem(19);
+            left: rem(-19);
+        }
+
+        @include media-query("x-large") {
+            top: rem(23);
+            left: rem(-23);
+        }
+    }
+
+    position: absolute;
+    z-index: 2;
+}
+
+@mixin square-corner-top-right {
+    @include pseudo("before") {
+        @include square-corner-angle;
+        right: rem(0);
+    }
+
+    @include pseudo("after") {
+        @include square-corner-angle;
+        transform: rotate(90deg);
+
+        top: rem(14);
+        right: rem(-14);
+
+        @include media-query("medium") {
+            top: rem(19);
+            right: rem(-19);
+        }
+
+        @include media-query("x-large") {
+            top: rem(23);
+            right: rem(-23);
+        }
+    }
+
+    position: absolute;
+    z-index: 2;
+}
+
+@mixin square-corner-bottom-left {
+    @include pseudo("before") {
+        @include square-corner-angle;
+    }
+
+    @include pseudo("after") {
+        @include square-corner-angle;
+        transform: rotate(90deg);
+
+        bottom: rem(13);
+        left: rem(-13);
+
+        @include media-query("medium") {
+            bottom: rem(18);
+            left: rem(-18);
+        }
+
+        @include media-query("x-large") {
+            bottom: rem(23);
+            left: rem(-23);
+        }
+    }
+
+    position: absolute;
+    z-index: 2;
+}
+
+@mixin square-corner-bottom-right {
+    @include pseudo("before") {
+        @include square-corner-angle;
+        right: rem(0);
+    }
+
+    @include pseudo("after") {
+        @include square-corner-angle;
+        transform: rotate(90deg);
+
+        bottom: rem(13);
+        right: rem(-13);
+
+        @include media-query("medium") {
+            bottom: rem(18);
+            right: rem(-18);
+        }
+
+        @include media-query("x-large") {
+            bottom: rem(23);
+            right: rem(-23);
+        }
+    }
+
+    position: absolute;
+    z-index: 2;
+}
+
+@mixin hexagon($w: null, $h: null, $color: null) {
+    @if $w and $h and $color {
+        $width: not-unitless-and-string($w);
+        $height: not-unitless-and-string($h);
+
+        width: $width;
+        height: $height;
+        background-color: $color;
+        clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+    } @else {
+        @error "Element must have width, height and color.";
+    }
+}
